@@ -31,7 +31,7 @@ It is work after [MySQL 8.0.34](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/
 ```
 select json_unquote(json_extract(invoke_titan(
 '{
-"inputText": "<Put your request>",
+"inputText": "Put your Request here",
 "textGenerationConfig": {
 "maxTokenCount": 1024,
 "stopSequences": [],
@@ -64,18 +64,18 @@ The proportion of land and sea on Earth is approximately 71% for land and 29% fo
 
 - invoke Claude 3 (run claude3_haiku.sql for cloude3_haiku function)
 
-  ```
-  select json_unquote(json_extract(claude3_haiku(
+```
+select json_unquote(json_extract(claude3_haiku(
 '{
 "anthropic_version": "bedrock-2023-05-31",
 "max_tokens": 1024,
-"messages": [{"role": "user","content": [{"type": "text", "text": "<Put your request>"}]}],
+"messages": [{"role": "user","content": [{"type": "text", "text": "Put your request here"}]}],
 "temperature": 0,
 "top_p": 0,
 "top_k":1,
 "stop_sequences": []
 }'),"$.content[0].text")) as response_from_bedrock\G
-  ```
+```
 
 - example
 ```
