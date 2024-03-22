@@ -29,6 +29,22 @@ It is work after [MySQL 8.0.34](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/
 - invoke titan (run invoke_titan.sql for invoke_titan function)
 
 ```
+select json_unquote(json_extract(invoke_titan(
+'{
+"inputText": "<Put your request>",
+"textGenerationConfig": {
+"maxTokenCount": 1024,
+"stopSequences": [],
+"temperature":0,
+"topP":1
+}
+}'
+),"$.results[0].outputText")) as bedrock_response\G
+```
+
+- example
+
+```
 mysql> select json_unquote(json_extract(invoke_titan(
     -> '{
     '> "inputText": "What is the proportion of land and sea on Earth?",
@@ -48,6 +64,20 @@ The proportion of land and sea on Earth is approximately 71% for land and 29% fo
 
 - invoke Claude 3 (run claude3_haiku.sql for cloude3_haiku function)
 
+  ```
+  select json_unquote(json_extract(claude3_haiku(
+'{
+"anthropic_version": "bedrock-2023-05-31",
+"max_tokens": 1024,
+"messages": [{"role": "user","content": [{"type": "text", "text": "<Put your request>"}]}],
+"temperature": 0,
+"top_p": 0,
+"top_k":1,
+"stop_sequences": []
+}'),"$.content[0].text")) as response_from_bedrock\G
+  ```
+
+- example
 ```
 mysql> select json_unquote(json_extract(claude3_haiku(
     -> '{
