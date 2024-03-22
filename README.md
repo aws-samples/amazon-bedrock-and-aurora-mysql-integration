@@ -88,7 +88,7 @@ call get_bedrock_claude3_haiku();
 - 1: t_feed.sql for creating t_feed table. (Create sample table)
 - 2: It require Python 3.7 and newer for using pymysql. (pip install -r requirements.txt)
 - 3: use feed.py for obtaining data from rss feed. (You can modify target feed url)
-- 4: For obtain data by runing ``` python feed.py ```
+- 4: For obtain data by runing ``` python feed.py ``` or ``` python3 feed.py ```
 - 5: get_rss_product_by_bedrock_claude3_haiku.sql for picking up product name from feed. (It takes approx 40 sec)
 
 ```
