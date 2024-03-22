@@ -6,4 +6,4 @@ CREATE TABLE `t_bedrock` (
   `updated_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_update_time` (`updated_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
