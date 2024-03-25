@@ -1,6 +1,6 @@
 -- This is sample of batch summarization.
 
-set session group_concat_max_len = 102400;
+set session group_concat_max_len = 1048576; 
 set session aurora_ml_inference_timeout = 30000;
 
 set @all = (select group_concat(description) from t_feed order by id desc limit 10);
