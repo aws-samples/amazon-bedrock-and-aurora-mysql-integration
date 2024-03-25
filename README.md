@@ -102,7 +102,7 @@ This uneven distribution of land and water is a key feature of the Earth's geogr
 
 ### You can do two demonstrations.
 
-##### Add information to exsisting column information.
+##### 1: Add information to exsisting column information.
 
 - 1: t_bedrock.sql for creating t_bedrock table. (sample table)
 - 2: sample_data_for_t_bedrock.sql for add sample data to t_bedrock.
@@ -113,7 +113,7 @@ call get_bedrock_claude3_haiku();
 ```
 
 
-##### Import data from RSS feed. Then pickup service name and summarize it.
+##### 2: Import data from RSS feed. Then pickup service name and summarize it.
 
 - 1: t_feed.sql for creating t_feed table. (Create sample table)
 - 2: It require Python 3.7 and newer for using pymysql. (pip install -r requirements.txt)
