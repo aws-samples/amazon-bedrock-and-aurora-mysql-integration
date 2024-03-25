@@ -133,6 +133,68 @@ mysql> call get_rss_summary_by_bedrock_claude3_haiku();
 Query OK, 0 rows affected (1 min 1.49 sec)
 ```
 
+
+##### Summarize ten rss descriptions.  
+
+- Request Amazon Bedrock to summarize ten rss contents.
+
+```
+set session group_concat_max_len = 1048576; 
+set session aurora_ml_inference_timeout = 30000;
+
+set @all = (select group_concat(description) from t_feed order by id desc limit 10);
+
+set @question = concat('\"messages\": [{\"role\": \"user\",\"content\": [{\"type\": \"text\", \"text\": \"Please tell me what kind of services improvement being talked about based on the following content.  ', @all,' ?\"}]}]}\'),\"$.content[0].text\")) as response_from_bedrock');
+set @parameter = '(\'{\"anthropic_version\": \"bedrock-2023-05-31\",\"max_tokens\": 1024,\"temperature\": 0,\"top_p\": 0, \"top_k\":1, \"stop_sequences\": [],';
+set @request = concat("select json_unquote(json_extract(claude3_haiku",@parameter,@question);
+
+PREPARE select_stmt FROM @request;
+EXECUTE select_stmt\G
+DEALLOCATE PREPARE select_stmt;
+
+```
+
+- Output: Summarized batch contents.
+
+```
+mysql> EXECUTE select_stmt\G
+
+*************************** 1. row ***************************
+response_from_bedrock: Based on the content provided, the key service improvements being discussed are:
+
+1. Expansion of service availability to new AWS Regions:
+   - IAM Identity Center is now available in 30 AWS Regions globally, including the new Asia Pacific (Melbourne) Region.
+   - Amazon Athena and its latest features are now available in the AWS Canada West (Calgary) Region.
+   - Amazon Cognito is now available in the Europe (Zurich), Middle East (UAE), and Canada West (Calgary) Regions.
+   - Amazon FSx for OpenZFS file systems can now be created in the Europe (Spain), Europe (Zurich), and AWS GovCloud (US) Regions.
+   - Amazon GuardDuty is now available in the Canada West (Calgary) Region.
+
+2. Enhancements to existing services:
+   - Amazon Managed Service for Apache Flink now supports Apache Flink 1.18 with improvements to connectors and performance.
+   - AWS Secrets Manager can now create and rotate user credentials for Amazon Redshift Serverless.
+   - Amazon CloudWatch Synthetics is extending historical data for canary runs from 7 days to 30 days.
+   - AWS Backup now supports restore testing for Amazon EBS Snapshots Archive and Amazon Aurora continuous backups.
+   - Amazon EC2 now enables tagging of Amazon Machine Images (AMIs) during creation or copying.
+   - AWS CloudFormation has improved stack creation speed by up to 40% and introduced a new stack creation event.
+   - Amazon SageMaker Canvas has a revamped home page to help customers get started faster with ML and Generative AI.
+
+3. New capabilities and features added to services:
+   - Amazon Managed Service for Apache Flink now supports in-place Apache Flink version upgrades.
+   - AWS CloudFormation StackSets now provides an API to list existing target Organizational Units (OUs) and AWS Regions.
+   - Amazon SageMaker now integrates with NVIDIA NIM inference microservices for improved price-performance of large language models.
+   - Amazon Timestream for InfluxDB, a new time-series database engine, is now generally available.
+   - AWS Signer container image signing and verification is now available in the AWS GovCloud (US) Regions.
+   - AWS Batch now supports a Batch Job Queue Blocked CloudWatch Event for jobs stuck in RUNNABLE state.
+   - Application Load Balancer (ALB) now provides flexibility to configure HTTP client keepalive duration.
+   - Amazon MSK Replicator now supports replicating existing data on your topics across Amazon MSK clusters.
+   - AWS Fault Injection Service (FIS) now allows you to preview target resources before starting an experiment.
+   - Amazon S3 on Outposts now caches AWS IAM permissions locally, improving application performance.
+
+The overall theme is the expansion of service availability to new regions, enhancements to existing services, and the addition of new capabilities across various AWS services.
+1 row in set (7.96 sec)
+```
+
+
 #### License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
