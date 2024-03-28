@@ -1,6 +1,6 @@
 # Amazon Bedrock and Aurora MySQL Integration
 
-- Aurora version
+- Aurora MySQL version
 
 ```
 mysql> select @@aurora_version,@@version;
@@ -21,6 +21,34 @@ mysql> select @@aurora_version,@@version;
 
 Note: In this script use CURRENT_USER() as default value of modify_user column.
 It is work after [MySQL 8.0.34](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-34.html#mysqld-8-0-34-sql-syntax ).
+
+
+### Create Amazon Bedrock functions by using account with rds_superuser privilege
+
+
+- Function for Titan Text G1 - Express
+
+```
+CREATE FUNCTION invoke_titan (request_body TEXT)
+RETURNS TEXT
+ALIAS AWS_BEDROCK_INVOKE_MODEL
+MODEL ID 'amazon.titan-text-express-v1' /*** model ID ***/
+CONTENT_TYPE 'application/json'
+ACCEPT 'application/json';
+
+```
+
+- Function for Claude 3 Haiku
+
+```
+CREATE FUNCTION claude3_haiku (request_body TEXT)
+RETURNS TEXT
+ALIAS AWS_BEDROCK_INVOKE_MODEL
+MODEL ID 'anthropic.claude-3-haiku-20240307-v1:0' 
+CONTENT_TYPE 'application/json'
+ACCEPT 'application/json';
+
+```
 
 
 
@@ -136,7 +164,7 @@ Query OK, 0 rows affected (1 min 1.49 sec)
 
 ##### Summarize ten rss descriptions.  
 
-- Request Amazon Bedrock to summarize ten rss contents.
+- Request Amazon Bedrock to summarize twenty rss contents.
 
 ```
 set session group_concat_max_len = 1048576; 
