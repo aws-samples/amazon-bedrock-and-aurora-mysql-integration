@@ -23,15 +23,16 @@ Note: In this script use CURRENT_USER() as default value of modify_user column.
 It is work after [MySQL 8.0.34](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-34.html#mysqld-8-0-34-sql-syntax ).
 
 
-### Create Amazon Bedrock functions by using account with AWS_BEDROCK_ACCESS Role.
+### Create Amazon Bedrock functions by using account with AWS_BEDROCK_ACCESS role.
 
 
 - Please grant AWS_BEDROCK_ACCESS role to the user that create and execute functions
 
 ```
 GRANT AWS_BEDROCK_ACCESS TO `<user name>`@`%`;
-
 ```
+refer: [Using Amazon Aurora machine learning with Aurora MySQL](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/mysql-ml.html#aurora-ml-sql-privileges.br)
+
 
 - Make sure your user set role before executing command
 
