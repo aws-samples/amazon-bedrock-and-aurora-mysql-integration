@@ -23,7 +23,32 @@ Note: In this script use CURRENT_USER() as default value of modify_user column.
 It is work after [MySQL 8.0.34](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-34.html#mysqld-8-0-34-sql-syntax ).
 
 
-### Create Amazon Bedrock functions by using account with rds_superuser privilege
+### Create Amazon Bedrock functions by using account with AWS_BEDROCK_ACCESS Role.
+
+
+- Please grant AWS_BEDROCK_ACCESS role to the user that create and execute functions
+
+```
+GRANT AWS_BEDROCK_ACCESS TO `<user name>`@`%`;
+
+```
+
+- Make sure your user set role before executing command
+
+```
+mysql> SET ROLE AWS_BEDROCK_ACCESS;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT CURRENT_ROLE();
++--------------------------+
+| CURRENT_ROLE()           |
++--------------------------+
+| `AWS_BEDROCK_ACCESS`@`%` |
++--------------------------+
+1 row in set (0.00 sec)
+
+```
+
 
 
 - Function for Titan Text G1 - Express
