@@ -16,7 +16,7 @@ mysql> select @@aurora_version,@@version;
 ### This is sample Scripts
 
 - Create sample tables
-- Create Functions for integrate with Bedrock
+- Create Functions for integrate with Amazon Bedrock
 - Obtain Sample Data from RSS
 
 Note: In this script use CURRENT_USER() as default value of modify_user column.
@@ -38,7 +38,7 @@ ACCEPT 'application/json';
 
 ```
 
-- Function for Claude 3 Haiku
+- Function for Anthropic Claude 3 Haiku
 
 ```
 CREATE FUNCTION claude3_haiku (request_body TEXT)
@@ -90,7 +90,7 @@ The proportion of land and sea on Earth is approximately 71% for land and 29% fo
 1 row in set (1.31 sec)
 ```
 
-- invoke Claude 3 (run claude3_haiku.sql for cloude3_haiku function)
+- invoke Anthropic Claude 3 (run claude3_haiku.sql for cloude3_haiku function)
 
 ```
 select json_unquote(json_extract(claude3_haiku(
