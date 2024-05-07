@@ -5,6 +5,7 @@ import feedparser
 import re
 
 # if module is not installed, please install it. ex: pip install -r requirements.txt
+# This is optional sample for Japanese rss feed.
 
 myfeed = feedparser.parse("https://aws.amazon.com/jp/about-aws/whats-new/recent/feed/")
 db = pymysql.connect(
