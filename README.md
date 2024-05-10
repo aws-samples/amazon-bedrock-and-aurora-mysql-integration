@@ -4,9 +4,11 @@
 ### Amazon Bedrock Support Regions
 
 - Amazon Bedrock Supported AWS Regions
+
   https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-regions.html
 
 - Model support by AWS Region
+
   https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html
 
 ### Aurora MySQL version
