@@ -1,7 +1,8 @@
 # Amazon Bedrock and Aurora MySQL Integration
 
+### Prerequisites
 
-### Amazon Bedrock Support Regions
+#### Amazon Bedrock Support Regions
 
 - Supported AWS Regions
 
@@ -11,7 +12,9 @@
 
   https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html
 
-### Aurora MySQL version
+#### Aurora MySQL version
+
+- Amazon Aurora MySQL 3.06.0 or later version is required to use Amazon Bedrock integration.
 
 ```
 mysql> select @@aurora_version,@@version;
@@ -23,6 +26,21 @@ mysql> select @@aurora_version,@@version;
 1 row in set (0.00 sec)
 
 ```
+
+#### Aurora MySQL cluster must allow outbound connections to Amazon Bedrock.
+
+- Enabling network communication from Amazon Aurora MySQL to other AWS services
+
+https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Authorizing.Network.html
+
+- Protect your data using Amazon VPC and AWS PrivateLink
+
+https://docs.aws.amazon.com/bedrock/latest/userguide/usingVPC.html#vpc-interface-endpoints
+
+- Aurora uses https to access Amazon Bedrock, so please allow https access from Aurora to Amazon Bedrock.
+
+https://docs.aws.amazon.com/general/latest/gr/bedrock.html
+
 
 ### This is sample Scripts
 
