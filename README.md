@@ -24,7 +24,6 @@ mysql> select @@aurora_version,@@version;
 | 3.06.0           | 8.0.34    |
 +------------------+-----------+
 1 row in set (0.00 sec)
-
 ```
 
 #### Aurora MySQL cluster must allow outbound connections to Amazon Bedrock.
@@ -40,6 +39,7 @@ https://docs.aws.amazon.com/bedrock/latest/userguide/usingVPC.html#vpc-interface
 - Aurora uses https to access Amazon Bedrock, so please allow https access from Aurora to Amazon Bedrock.
 
 https://docs.aws.amazon.com/general/latest/gr/bedrock.html
+
 
 
 ### This is sample Scripts
