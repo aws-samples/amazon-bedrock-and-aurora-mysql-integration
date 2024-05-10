@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import pymysql
 import feedparser
 import re
@@ -10,6 +12,7 @@ db = pymysql.connect(
         user='<user name>',
         password='<password>',
         database='<sample schema (ex: bedrockdb)>',
+        charset="utf8",
         cursorclass=pymysql.cursors.DictCursor)
 
 with db:
