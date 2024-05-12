@@ -217,9 +217,10 @@ Query OK, 0 rows affected (1 min 1.49 sec)
 ```
 
 
-##### Summarize ten rss descriptions.  
+##### Summarize rss descriptions.  
 
-- Request Amazon Bedrock to summarize twenty rss contents.
+- Request Amazon Bedrock to summarize rss contents.
+- If the amount of target data is large or an error occurs, narrow down the content and check. 
 
 ```
 set session group_concat_max_len = 1048576; 
