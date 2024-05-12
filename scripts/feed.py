@@ -4,8 +4,6 @@ import pymysql
 import feedparser
 import re
 
-# if module is not installed, please install it. ex: pip install -r requirements.txt
-
 myfeed = feedparser.parse("https://aws.amazon.com/about-aws/whats-new/recent/feed/")
 db = pymysql.connect(
         host='<Aurora MySQL Writer Endpoint>',
