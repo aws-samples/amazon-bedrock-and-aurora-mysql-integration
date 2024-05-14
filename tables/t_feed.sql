@@ -5,7 +5,7 @@ CREATE TABLE `t_feed` (
   `product` varchar(512) DEFAULT NULL,
   `description` text,
   `summary` text,
-  `modify_user` varchar(255) DEFAULT (current_user()) COMMENT 'If an import error occurs, please remove this column',
+  `modify_user` varchar(255) DEFAULT (current_user()) COMMENT 'This column is option. You can remove this column',
   `updated_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_update_time` (`updated_time`)
