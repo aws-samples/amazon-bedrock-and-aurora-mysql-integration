@@ -3,7 +3,7 @@
 set session group_concat_max_len = 1048576; 
 set session aurora_ml_inference_timeout = 30000;
 
--- If the data size is small, there is no particular need to limit it. However, if there is a large amount of data, it is limited because PREPARED STATEMENTS can cause errors.
+-- If the data size is small, there is no particular need to limit it. However, if there is a large amount of data, it is limited because the length of the PREPARED STATEMENT or the need for additional escaping can cause errors.
 -- set @all = (select group_concat(description) from t_feed);
 
 set @all = (select group_concat(top20.description) from (select description from t_feed limit 20) top20);
